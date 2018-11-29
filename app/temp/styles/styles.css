@@ -1,16 +1,14 @@
  /* commentssssS */
- $mainBlue: #2f5572;
  
  body {
 	padding:25px;
 	margin:10px;
-	color: $mainBlue;
-	columns: 300px 2;
+	color: #2f5572;
+	-webkit-columns: 300px 2;
+	        columns: 300px 2;
  }
   
-.box {
-	a{
+.box a{
 	 display:block;
 	 padding:0px;
 	}
-}
