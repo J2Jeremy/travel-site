@@ -467,7 +467,7 @@ img {
 	color: #ffffff;
 	text-decoration:none;
 	padding: .75rem 1.2rem; 
-	display: inline-block;
+	display: inline-block; 
 }
 
 /* inline block so parent and surrounding elements are aware of its padding. */
@@ -519,6 +519,6 @@ img {
 		max-width:30rem; /* want 2 lines of text, use REM to account for font size */
 		margin-left:auto; /* center */
 		margin-right:auto; /* center */
-	} 
+	}  
 
  
