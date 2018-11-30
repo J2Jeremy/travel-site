@@ -1,0 +1,38 @@
+.large-hero {
+	position: relative;
+	
+	&__text-content{
+		position: absolute;
+		left: 0;
+	/* center text horiz */
+		width:100%;
+		text-align:center;
+	/* center text vert.   top = top edge of div 50% down from top edge of nearest position ancestor */
+		top: 50%; 
+		transform: translateY(-50%); /* translateY position vertically relative to itself +moves down, - moves up */
+	}
+
+	&__title{
+		font-weight:300;
+		color:#mainBlue;
+		font-size: 4.8rem;
+		margin:0;
+	}
+
+	&__subtitle{
+		font-weight:300;
+		color:#mainBlue;
+		font-size: 2.9rem;
+		margin:0;
+	}
+	
+	&__description{
+		color:#ffffff;
+		font-size: 1.875rem;
+		font-weight:100;
+		text-shadow: 2px 2px 0 rgba(0,0,0, .1); /* 2px offset, 0 blur, 10% visible */
+		max-width:30rem; /* want 2 lines of text, use REM to account for font size */
+		margin-left:auto; /* center */
+		margin-right:auto; /* center */
+	}
+}
