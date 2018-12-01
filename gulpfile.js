@@ -1,2 +1,2 @@
-require('./Gulp/Tasks/styles');
-require('./Gulp/Tasks/watch');
+require('./gulp/tasks/styles');
+require('./gulp/tasks/watch');

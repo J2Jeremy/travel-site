@@ -450,24 +450,14 @@ template {
   display: none;
 }
 
-/* global styles */
-
-body {
-	font-family: 'Roboto', sans-serif;
-	color:#333;
-}
-
-img {
-	max-width:100%;
-	height: auto;
-}
+@media @import "base/_global" {}
 
 .btn {
 	background-color:#2f5572;
 	color: #ffffff;
 	text-decoration:none;
 	padding: .75rem 1.2rem; 
-	display: inline-block; 
+	display: inline-block;
 }
 
 /* inline block so parent and surrounding elements are aware of its padding. */
@@ -491,24 +481,52 @@ img {
 	/* center text horiz */
 		width:100%;
 		text-align:center;
-	/* center text vert.   top = top edge of div 50% down from top edge of nearest position ancestor */
+	/* center text vert.   top = top edge of div 50% down from top edge of nearest position ancestor.   */
 		top: 50%; 
 		-webkit-transform: translateY(-50%); 
 		        transform: translateY(-50%); /* translateY position vertically relative to itself +moves down, - moves up */
 	}
 
-.large-hero__title{
+.large-hero__title{ /* baseline for all screens */
 		font-weight:300;
-		color:#mainBlue;
-		font-size: 4.8rem;
+		color:#2f5572;
+		font-size: 1.1rem;
 		margin:0;
+	}
+
+@media (min-width: 530px){
+
+.large-hero__title{ /* small text for 530px */
+			font-size: 2rem
+	}
+	}
+
+@media (min-width: 800px){
+
+.large-hero__title{
+			font-size: 3.2rem /*medium for 800px */
+	}
+	}
+
+@media (min-width: 1200px){
+
+.large-hero__title{
+			font-size: 4.8rem /*large for 1200px */
+	}
 	}
 
 .large-hero__subtitle{
 		font-weight:300;
 		color:#mainBlue;
-		font-size: 2.9rem;
+		font-size: 1.1rem;
 		margin:0;
+	}
+
+@media (min-width: 530px){
+
+.large-hero__subtitle{
+			font-size: 2.9rem
+	}
 	}
 
 .large-hero__description{
@@ -519,6 +537,4 @@ img {
 		max-width:30rem; /* want 2 lines of text, use REM to account for font size */
 		margin-left:auto; /* center */
 		margin-right:auto; /* center */
-	}  
-
- 
+	} 

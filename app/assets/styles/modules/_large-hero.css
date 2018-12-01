@@ -7,23 +7,37 @@
 	/* center text horiz */
 		width:100%;
 		text-align:center;
-	/* center text vert.   top = top edge of div 50% down from top edge of nearest position ancestor */
+	/* center text vert.   top = top edge of div 50% down from top edge of nearest position ancestor.   */
 		top: 50%; 
 		transform: translateY(-50%); /* translateY position vertically relative to itself +moves down, - moves up */
 	}
 
-	&__title{
+	&__title{ /* baseline for all screens */
 		font-weight:300;
-		color:#mainBlue;
-		font-size: 4.8rem;
+		color:$mainBlue;
+		font-size: 1.1rem;
 		margin:0;
+
+		@mixin atSmall{ /* small text for 530px */
+			font-size: 2rem;
+		}
+		@mixin atMedium{
+			font-size: 3.2rem; /*medium for 800px */
+		}
+		@mixin atLarge{
+			font-size: 4.8rem; /*large for 1200px */
+		}
 	}
 
 	&__subtitle{
 		font-weight:300;
 		color:#mainBlue;
-		font-size: 2.9rem;
+		font-size: 1.1rem;
 		margin:0;
+
+		@mixin atSmall{
+			font-size: 2.9rem;
+		}
 	}
 	
 	&__description{
