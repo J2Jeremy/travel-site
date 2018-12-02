@@ -588,6 +588,32 @@ a {
 		max-width: 976px;
 	}
 
+.wrapper--no-padding-until-medium{
+		padding-left:0;
+		padding-right:0;
+	}
+
+@media (min-width: 800px) {
+
+.wrapper--no-padding-until-medium{
+			padding-left:18px;
+			padding-right:18px
+	}
+  }
+
+.wrapper--no-padding-until-large{
+		padding-left:0;
+		padding-right:0;
+	}
+
+@media (min-width: 1010px) {
+
+.wrapper--no-padding-until-large{
+			padding-left:18px;
+			padding-right:18px
+	}
+  }
+
 .wrapper .wrapper{
 		padding-left:0px;
 		padding-right:0px;		
@@ -619,6 +645,42 @@ a {
 		background-color: #2f5572;
 		color:#ffffff;
 	}
+
+.page-section--testimonials{
+		background-color: #e0e6ef;
+
+	}
+
+@media (min-width: 1010px) {
+
+.page-section--testimonials{
+			background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+			background-size: cover /* always cover the containing div */
+
+	}
+  }
+
+.page-section--no-b-padding-until-medium{
+		padding-bottom:0;
+	}
+
+@media (min-width: 800px) {
+
+.page-section--no-b-padding-until-medium{
+			padding-bottom: 4.5rem
+	}
+  }
+
+.page-section--no-b-padding-until-large{
+		padding-bottom:0;
+	}
+
+@media (min-width: 1010px) {
+
+.page-section--no-b-padding-until-large{
+			padding-bottom: 4.5rem
+	}
+  }
 
 .headline {
 	font-weight:300;
@@ -690,6 +752,10 @@ a {
 		margin-right: -65px;
 	}
 
+.row--gutters-small{
+		margin-right: -45px;
+	}
+
 .row--gutters-large{
 		margin-right: -100px;
 	}
@@ -700,8 +766,16 @@ a {
 		padding-right:65px;
 	}
 
+.row--gutters-small > div{
+		padding-right:45px;
+	}
+
 .row--gutters-large > div{
 		padding-right:100px;
+	}
+
+.row--t-padding{
+		padding-top:80px;
 	}
 
 .row__b-margin-until-medium{
@@ -711,7 +785,6 @@ a {
 /* only show 2 col 4/8 split on medium screens or larger */
 
 @media (min-width: 800px) {
-
 		.row__b-margin-until-medium{
 			margin-bottom: 0;
 		}
@@ -739,6 +812,70 @@ a {
 			width:63%;
 		}
   }
+
+@media (min-width: 1010px) {
+
+		.row__b-margin-until-medium{
+			margin-bottom: 0;
+		}
+
+		.row__large-4{
+			float:left;
+			width: 33.33%;
+		}
+
+		.row__large-4--larger{
+			width:37%;
+		}
+
+		.row__large-6{
+			float:left;
+			width:50%;
+		}
+
+		.row__large-8{
+			float:left;
+			width: 66.66%;
+		}	
+
+		.row__large-8--smaller{
+			width:63%;
+		}
+  }
+
+/* begin equal height rules, using FLEXBOX */
+
+@media (min-width: 800px) {
+
+.row--equal-height-at-medium{
+			display:-webkit-box;
+			display:-ms-flexbox;
+			display:flex
+	}
+  }
+
+.row--equal-height-at-medium > div {
+			float:none;
+			display:-webkit-box;
+			display:-ms-flexbox;
+			display:flex;
+		}
+
+@media (min-width: 1010px) {
+
+.row--equal-height-at-large{
+			display:-webkit-box;
+			display:-ms-flexbox;
+			display:flex
+	}
+  }
+
+.row--equal-height-at-large > div {
+			float:none;
+			display:-webkit-box;
+			display:-ms-flexbox;
+			display:flex;
+		}
 
 .generic-content-container p {
 		font-weight:300;
@@ -770,6 +907,10 @@ a {
 		font-weight:500;
 	}
 
+.section-title--blue{
+		color:#2f5572;
+	}
+
 @media (min-width: 530px) {
 
 .section-title{
@@ -788,7 +929,9 @@ a {
 @media (min-width: 530px) {
 
 .section-title__icon{
-			margin-right: .5rem;
+			position: relative;
+			top: 8px; /* push icon down 8px */
+			margin-right: .8rem;
 			margin-left:0;
 			margin-bottom:0;
 			display:inline-block
@@ -843,3 +986,52 @@ a {
 			text-align:left
 	}
   }
+
+.testimonial{
+	background-color: rgba(255, 255, 255, .8); /* transparent bg */
+	/* 1px bot gives bot margin of para something to push */
+	padding: 0 18px 1px 18px;
+	margin-bottom: 98px;
+}
+
+@media (min-width: 1010px) {
+
+.testimonial{
+		padding: 0 1.8rem 1px 1.8rem;
+		margin-bottom:0
+}
+  }
+
+.testimonial--last{
+		margin-bottom:0;
+	}
+
+.testimonial__photo{
+		/* round image */
+		width: 160px;
+		height: 160px;
+		border-radius: 80px;
+		overflow:hidden;
+		margin:0 auto -80px auto;
+		/* position element outside div, content doesn't know where img is when
+		using position relative, add negative bot margin */
+		position:relative;
+		top:-80px;
+		border: 6px solid rgba(255, 255, 255, .8);
+	}
+
+.testimonial__title{
+		color:#2f5572;
+		text-align: center;
+		font-size: 1.5rem; /* 24px / 16px = 1.5rem */
+		font-weight:500;
+		margin:0;
+	}
+
+.testimonial__subtitle{
+		color:#d59541;
+		text-align: center;
+		font-weight: 400;
+		font-size: 1rem;
+		margin: .25rem 0 1rem 0;
+	}
