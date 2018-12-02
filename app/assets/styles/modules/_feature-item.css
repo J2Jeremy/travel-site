@@ -1,0 +1,38 @@
+.feature-item{
+
+	/* position absolutely to move icon next to content */
+	position:relative;
+
+	padding-bottom:2.5rem;
+
+	@mixin atSmall{
+		/* create room for icon to set next to content */
+		padding-left: 94px;		
+	}
+
+	&__icon {
+		display:block;
+		margin:0 auto;
+
+		@mixin atSmall{
+			position:absolute;
+			left:0;		
+		}
+	}
+
+	/* text styling */
+	&__title{
+		font-size:1.6rem;
+		font-weight: 300;
+		/* em margins are relative to this elements font size */
+		margin-top:.7em; 
+		margin-bottom: .8rem;
+		text-align:center;
+
+		@mixin atSmall{
+			margin-top:1em;
+			font-size:1.87em;
+			text-align:left;
+		}
+	}
+}
