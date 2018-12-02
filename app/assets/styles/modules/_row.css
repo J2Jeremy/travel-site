@@ -1,26 +1,23 @@
-/* 
-12 col grid
-row width 100%, 100/12, one col = 8.33% 
-*/
-
+/* 12 col grid, row width 100%, 100/12, one col = 8.33% */
 .row{
 	@mixin clearfix;
-
-	/* negative margin and overflow hidden to adjust for
-		unwanted padding */
+	/* negative margin and overflow hidden to adjust for padding */
 	&--gutters {
 		margin-right: -65px;
 	}
-
+	&--gutters-large{
+		margin-right: -100px;
+	}
 	/* applies to children of row */
 	&--gutters > div{ 
 		padding-right:65px;
 	}
-
+	&--gutters-large > div{
+		padding-right:100px;
+	}
 	&__b-margin-until-medium{
 		margin-bottom: 1rem;
 	}
-
 	/* only show 2 col 4/8 split on medium screens or larger */
 	@mixin atMedium{
 
@@ -35,6 +32,11 @@ row width 100%, 100/12, one col = 8.33%
 
 		&__medium-4--larger{
 			width:37%;
+		}
+
+		&__medium-6{
+			float:left;
+			width:50%;
 		}
 
 		&__medium-8{
