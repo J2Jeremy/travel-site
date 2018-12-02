@@ -450,37 +450,47 @@ template {
   display: none;
 }
 
-@media @import "base/_global" {}
-
-.btn {
-	background-color:#2f5572;
-	color: #ffffff;
-	text-decoration:none;
-	padding: .75rem 1.2rem; 
-	display: inline-block;
+body {
+	font-family: 'Roboto', sans-serif;
+	color:#333;
 }
 
-/* inline block so parent and surrounding elements are aware of its padding. */
+img {
+	max-width:100%;
+	height: auto;
+}
 
-.btn--orange{
-		background-color:#d59541;
-	}
+/* select all elements */
 
-.btn--large{
-		font-size:1.25rem;
-		padding: 1.1rem 1.9rem;
-	}
+/*forces browser to honor declared with values instead of calculating */
+
+* { 
+	-webkit-box-sizing: border-box; 
+	        box-sizing: border-box; 
+}
+
+/* be selective over what is global, orange is safe b/c blue is bad for links, bold
+wasn't used b/c some links (header) aren't bolded */
+
+a {
+	color:#d59541;
+}
 
 .large-hero {
 	position: relative;
+	border-bottom: 10px solid #2f5572;
 }
+
+.large-hero__image {
+		display:block; /* keeps white space away */
+	}
 
 .large-hero__text-content{
 		position: absolute;
 		left: 0;
-	/* center text horiz */
+	/* centter text horiz */
 		width:100%;
-		text-align:center;
+		text-align: center;
 	/* center text vert.   top = top edge of div 50% down from top edge of nearest position ancestor.   */
 		top: 50%; 
 		-webkit-transform: translateY(-50%); 
@@ -490,51 +500,249 @@ template {
 .large-hero__title{ /* baseline for all screens */
 		font-weight:300;
 		color:#2f5572;
-		font-size: 1.1rem;
+		font-size: 2.4rem;
 		margin:0;
+		/* 
+		//these were over kill
+		@mixin atMedium{
+			font-size: 3.2rem; 
+		}
+		@mixin atLarge{
+			font-size: 4.8rem; 
+		} */
 	}
 
-@media (min-width: 530px){
+@media (min-width: 530px) {
 
 .large-hero__title{ /* small text for 530px */
-			font-size: 2rem
+			font-size: 4.8rem
 	}
-	}
-
-@media (min-width: 800px){
-
-.large-hero__title{
-			font-size: 3.2rem /*medium for 800px */
-	}
-	}
-
-@media (min-width: 1200px){
-
-.large-hero__title{
-			font-size: 4.8rem /*large for 1200px */
-	}
-	}
+  }
 
 .large-hero__subtitle{
 		font-weight:300;
-		color:#mainBlue;
-		font-size: 1.1rem;
+		color:#2f5572;
+		font-size: 1.5rem;
 		margin:0;
 	}
 
-@media (min-width: 530px){
+@media (min-width: 530px) {
 
 .large-hero__subtitle{
 			font-size: 2.9rem
 	}
-	}
+  }
 
 .large-hero__description{
 		color:#ffffff;
-		font-size: 1.875rem;
+		font-size: 1.1rem;
 		font-weight:100;
 		text-shadow: 2px 2px 0 rgba(0,0,0, .1); /* 2px offset, 0 blur, 10% visible */
 		max-width:30rem; /* want 2 lines of text, use REM to account for font size */
 		margin-left:auto; /* center */
-		margin-right:auto; /* center */
-	} 
+		margin-right:auto;
+	}
+
+/* center */
+
+@media (min-width: 530px) {
+
+.large-hero__description{
+			font-size: 1.875rem
+	}
+  }
+
+.btn {
+	background-color:#2f5572;
+	color: #ffffff;
+	text-decoration:none;
+	padding: .75rem 1.2rem; 
+	/* inlinee block so parent and surrounding elements are aware of its padding. */
+	display: inline-block;
+}
+
+.btn--orange{
+		background-color:#d59541; 
+	}
+
+.btn--large{
+		padding: 1.1rem 1.9rem;
+	}
+
+@media (min-width: 530px) {
+
+.btn {
+		font-size:1.25rem
+}
+  }
+
+.wrapper {
+	overflow:hidden;
+	padding-left:18px;
+	padding-right:18px;
+	max-width:1236px; /*updated +36px to account for box-sizing (36px of padding); */
+	margin:0 auto;
+}
+
+.wrapper--medium{
+		max-width: 976px;
+	}
+
+.wrapper .wrapper{
+		padding-left:0px;
+		padding-right:0px;		
+	}
+
+.wrapper--b-margin{
+		margin-bottom: 1rem;
+	}
+
+@media (min-width: 530px) {
+
+.wrapper--b-margin{
+			margin-bottom: 3.875rem
+	}
+  }
+
+.page-section {
+	padding:1.2rem 0;
+}
+
+@media (min-width: 800px) {
+
+.page-section {
+		padding: 4.5rem 0
+}
+  }
+
+.page-section--blue{
+		background-color: #2f5572;
+		color:#ffffff;
+	}
+
+.headline {
+	font-weight:300;
+	font-size:1.9rem;
+	color: #2f5572;
+
+}
+
+@media (min-width: 530px) {
+
+.headline {
+		font-size:2.875rem /* calculate by dividing size by default (16); */
+
+}
+  }
+
+.headline--centered {
+		text-align: center;
+	}
+
+.headline--orange{
+		color:#d59541;
+	}
+
+.headline--small{
+		font-size:1.2rem;
+	}
+
+@media (min-width: 530px) {
+
+.headline--small{
+			font-size: 1.875rem
+	}
+  }
+
+.headline--narrow{
+		max-width:500px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+.headline--light{
+		font-weight:100;
+	}
+
+.headline--b-margin-small{
+		margin-bottom: .5em; /* relative to font sizes, scales with font size */
+	}
+
+.headline--b-margin-large{
+		margin-bottom: 1.6em
+	}
+
+.headline--no-t-margin {
+		margin-top:0;
+	}
+
+/* 
+12 col grid
+row width 100%, 100/12, one col = 8.33% 
+*/
+
+.row::after{ /* pseduo class, fake space to clear children */
+		content: "";
+		clear: both;
+		display:table;
+	}
+
+/* negative margin and overflow hidden to adjust for
+		unwanted padding */
+
+.row--gutters {
+		margin-right: -65px;
+	}
+
+/* applies to children of row */
+
+.row--gutters > div{ 
+		padding-right:65px;
+	}
+
+.row__b-margin-until-medium{
+		margin-bottom: 1rem;
+	}
+
+/* only show 2 col 4/8 split on medium screens or larger */
+
+@media (min-width: 800px) {
+
+		.row__b-margin-until-medium{
+			margin-bottom: 0;
+		}
+
+		.row__medium-4{
+			float:left;
+			width: 33.33%;
+		}
+
+		.row__medium-4--larger{
+			width:37%;
+		}
+
+		.row__medium-8{
+			float:left;
+			width: 66.66%;
+		}	
+
+		.row__medium-8--smaller{
+			width:63%;
+		}
+  }
+
+.generic-content-container p {
+		line-height: 1.65; /* no unit of measurement needed */
+		margin: 1.8rem 0;
+	}
+
+@media (min-width: 530px) {
+
+.generic-content-container p {
+			font-size: 1.125rem
+	}
+  }
+
+.generic-content-container p a {
+		font-weight:700;
+	}

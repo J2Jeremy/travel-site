@@ -20,6 +20,8 @@ gulp.task('watch', function(){
 	});
 });
 
-gulp.task('cssInject',['styles'], function(){
-	return gulp.src('./app/temp/styles/styles.css').pipe(browserSync.stream()); //async updates the browser with css
+//async updates the browser with css
+gulp.task('cssInject', ['styles'], function(){
+	return gulp.src('./app/temp/styles/styles.css')
+	.pipe(browserSync.stream()); 
 });

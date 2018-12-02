@@ -1,0 +1,22 @@
+.wrapper {
+	overflow:hidden;
+	padding-left:18px;
+	padding-right:18px;
+	max-width:1236px; /*updated +36px to account for box-sizing (36px of padding); */
+	margin:0 auto;
+
+	&--medium{
+		max-width: 976px;
+	}
+	.wrapper{
+		padding-left:0px;
+		padding-right:0px;		
+	}
+
+	&--b-margin{
+		margin-bottom: 1rem;
+		@mixin atSmall{
+			margin-bottom: 3.875rem;
+		}
+	}
+}

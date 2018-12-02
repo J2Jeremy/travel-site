@@ -3,14 +3,18 @@
 	color: #ffffff;
 	text-decoration:none;
 	padding: .75rem 1.2rem; 
-	display: inline-block; /* inline block so parent and surrounding elements are aware of its padding. */
+	/* inlinee block so parent and surrounding elements are aware of its padding. */
+	display: inline-block; 
 	
 	&--orange{
-		background-color:$mainOrange;
+		background-color:$mainOrange; 
 	}
 	
 	&--large{
-		font-size:1.25rem;
 		padding: 1.1rem 1.9rem;
 	}
-}   
+
+	@mixin atSmall {
+		font-size:1.25rem;
+	}
+}    
