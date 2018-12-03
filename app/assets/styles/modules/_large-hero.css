@@ -12,9 +12,16 @@
 	/* centter text horiz */
 		width:100%;
 		text-align: center;
-	/* center text vert.   top = top edge of div 50% down from top edge of nearest position ancestor.   */
-		top: 50%; 
+/* center text vert. top=top edge of div 50% down from top edge of nearest 
+position ancestor.   */
+		top: 50%; /*Set the top edge of the positioned <div> element 50% down from 
+		the top edge of its nearest positioned ancestor */
 		transform: translateY(-50%); /* translateY position vertically relative to itself +moves down, - moves up */
+		padding-top:88px; /* padding = to logo height on mobile */
+
+		@mixin atMedium {
+			padding-top:60px; /* added more padding to account for header height */
+		}
 	}
 
 	&__title{ /* baseline for all screens */

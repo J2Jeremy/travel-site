@@ -491,11 +491,23 @@ a {
 	/* centter text horiz */
 		width:100%;
 		text-align: center;
-	/* center text vert.   top = top edge of div 50% down from top edge of nearest position ancestor.   */
-		top: 50%; 
-		-webkit-transform: translateY(-50%); 
+/* center text vert. top=top edge of div 50% down from top edge of nearest 
+position ancestor.   */
+		top: 50%; /*Set the top edge of the positioned <div> element 50% down from 
+		the top edge of its nearest positioned ancestor */
+		-webkit-transform: translateY(-50%);
 		        transform: translateY(-50%); /* translateY position vertically relative to itself +moves down, - moves up */
+		padding-top:88px;
 	}
+
+/* padding = to logo height on mobile */
+
+@media (min-width: 800px) {
+
+.large-hero__text-content{
+			padding-top:60px /* added more padding to account for header height */
+	}
+  }
 
 .large-hero__title{ /* baseline for all screens */
 		font-weight:300;
@@ -741,7 +753,7 @@ a {
 /* 12 col grid, row width 100%, 100/12, one col = 8.33% */
 
 .row::after{ /* pseduo class, fake space to clear children  */
-		content: "";
+		content: " ";
 		clear: both;
 		display:table;
 	}
@@ -1143,3 +1155,117 @@ look at pkg github page to see variable names and options svg-sprite.
 			margin-right: 1.8rem
 	}
   }
+
+.site-header {	
+	padding:10px 0;
+	position:absolute; /*header needs to sit on top of large hero seciton. */
+	width:100%; /* position:absolute chooses minimum width; */
+	z-index: 2;
+}
+
+/* install postCSS plugin to convert css vars into rgba, update styles.js */
+
+@media (min-width: 800px) {
+
+.site-header {
+		background-color: rgba(47,85,114, .3)
+}
+  }
+
+/* transparent blue bg, use mainBlue, 30% transparent */
+
+.site-header__btn-container{
+		float:right;
+	}
+
+/* add zindex otherwise hero section takes priority */
+
+.site-header__logo{
+		position:absolute; /* prevents logo from forcing transparent bg to too tall */
+		background-color: #2f5572;
+		padding:25px 35px;
+		top: 0; /* keeps padding from site-header from moving logo down 10px */
+		/* center logo for mobile */
+		left:50%;
+		/* add scale for smaller images that are sprites, .8 = 80% of original  
+			scales from center of image, creating unwanted gaps.
+			50% 50% = perfect horiz and vert
+			50% 100% = middle of img horiz, bot of img vert
+			50% 0% = middle of img horiz, top of img vert
+		*/
+		-webkit-transform-origin: 50% 0%;
+		        transform-origin: 50% 0%; /* top center is origin for scaling */
+		-webkit-transform:translateX(-50%) scale(.8);
+		        transform:translateX(-50%) scale(.8);
+	}
+
+@media (min-width: 800px) {
+
+.site-header__logo{
+			left:auto;
+			-webkit-transform:translateX(0);
+			        transform:translateX(0)
+	}
+  }
+
+.site-header__logo__graphic{
+		text-indent: -9999px; /* hidden text for seo and accessability, when using sprite */
+	}
+
+.site-header__menu-icon{
+		width:20px;
+		height:20px;
+		background-color:#ffffff;
+		position:absolute;
+		top:10px;
+		right:10px;
+	}
+
+@media (min-width: 800px) {
+
+.site-header__menu-icon{
+			display:none
+	}
+  }
+
+.site-header__menu-content{
+		display:none;
+	}
+
+@media (min-width: 800px) {
+
+.site-header__menu-content{
+			display:block
+	}
+  }
+
+.primary-nav--pull-right{
+		float:right;
+	}
+
+/* break BEM to style ul > a  */
+
+.primary-nav ul {
+		margin:0;
+		padding:0; /* clear floats (zero height container issue on floats) */
+	}
+
+.primary-nav ul::after{ /* pseduo class, fake space to clear children  */
+		content: " ";
+		clear: both;
+		display:table;
+	}
+
+.primary-nav li {
+		list-style: none;
+		float:left;
+		padding-right:20px;
+	}
+
+.primary-nav a {
+		display:block;
+		color: #ffffff;
+		text-decoration: none;
+		font-weight: 300;
+		padding:12px 0;
+	}

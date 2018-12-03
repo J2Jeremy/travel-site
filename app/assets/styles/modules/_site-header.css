@@ -1,0 +1,62 @@
+.site-header {	
+	padding:10px 0;
+	position:absolute; /*header needs to sit on top of large hero seciton. */
+	width:100%; /* position:absolute chooses minimum width; */
+	z-index: 2; /* add zindex otherwise hero section takes priority */
+	/* transparent blue bg, use mainBlue, 30% transparent */
+	/* install postCSS plugin to convert css vars into rgba, update styles.js */
+	
+	@mixin atMedium{
+		background-color: rgba($mainBlue, .3);  
+	}
+
+	&__btn-container{
+		float:right;
+	}
+
+	&__logo{
+		position:absolute; /* prevents logo from forcing transparent bg to too tall */
+		background-color: $mainBlue;
+		padding:25px 35px;
+		top: 0; /* keeps padding from site-header from moving logo down 10px */
+		/* center logo for mobile */
+		left:50%;
+		/* add scale for smaller images that are sprites, .8 = 80% of original  
+			scales from center of image, creating unwanted gaps.
+			50% 50% = perfect horiz and vert
+			50% 100% = middle of img horiz, bot of img vert
+			50% 0% = middle of img horiz, top of img vert
+		*/
+		transform-origin: 50% 0%; /* top center is origin for scaling */
+		transform:translateX(-50%) scale(.8);
+
+		@mixin atMedium {
+			left:auto;
+			transform:translateX(0);
+		}
+	}
+
+	&__logo__graphic{
+		text-indent: -9999px; /* hidden text for seo and accessability, when using sprite */
+	}
+
+	&__menu-icon{
+		width:20px;
+		height:20px;
+		background-color:#ffffff;
+		position:absolute;
+		top:10px;
+		right:10px;
+		@mixin atMedium{
+			display:none;
+		}
+	}
+
+	&__menu-content{
+		display:none;
+
+		@mixin atMedium{
+			display:block;
+		}
+	}
+}
