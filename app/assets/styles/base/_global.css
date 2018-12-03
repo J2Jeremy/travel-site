@@ -8,7 +8,7 @@ img {
 	height: auto;
 }
 
-/* select all elements */
+/* select all elements  */      
 /*forces browser to honor declared with values instead of calculating */
 * { 
 	box-sizing: border-box; 

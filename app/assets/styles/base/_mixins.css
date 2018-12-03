@@ -16,7 +16,7 @@
   }
 
 @define-mixin clearfix{
-	&::after{ /* pseduo class, fake space to clear children */
+	&::after{ /* pseduo class, fake space to clear children  */
 		content: "";
 		clear: both;
 		display:table;
