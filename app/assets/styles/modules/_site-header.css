@@ -3,19 +3,26 @@
 	position:absolute; /*header needs to sit on top of large hero seciton. */
 	width:100%; /* position:absolute chooses minimum width; */
 	z-index: 2; /* add zindex otherwise hero section takes priority */
+	transition:background-color .35s ease-out;
+	/* so we can add bg color and trasnition to mobile nav */
+	&--is-expanded{
+		background-color: rgba($mainBlue, .55);
+	}
 	/* transparent blue bg, use mainBlue, 30% transparent */
 	/* install postCSS plugin to convert css vars into rgba, update styles.js */
-	
 	@mixin atMedium{
 		background-color: rgba($mainBlue, .3);  
 	}
 
 	&__btn-container{
-		float:right;
+
+		@mixin atMedium{
+			float:right;
+		}
 	}
 
 	&__logo{
-		position:absolute; /* prevents logo from forcing transparent bg to too tall */
+		position:absolute; /* prevents logo from forcing transparent bg too tall */
 		background-color: $mainBlue;
 		padding:25px 35px;
 		top: 0; /* keeps padding from site-header from moving logo down 10px */
@@ -41,22 +48,40 @@
 	}
 
 	&__menu-icon{
+		z-index: 10; /* added b/c our zindex of -is-visible overrides */
 		width:20px;
 		height:20px;
 		background-color:#ffffff;
 		position:absolute;
 		top:10px;
 		right:10px;
+		
 		@mixin atMedium{
 			display:none;
 		}
 	}
 
 	&__menu-content{
-		display:none;
+		/* add 'zoom' effect */
+		transform: scale(1.2);
+		opacity: 0; /* instead of display:none so we can fade in */
+		transition: all .3s ease-out; /* so the --is-visible eases in ALL content */
+		position:relaive; /* anytime we use z-index we need relative so browse recognizes */
+		z-index:-99; /* prevent user from clicking invisible content  */
+		padding-top:90px; /* push mobile nav down  */
+		text-align:center;
 
 		@mixin atMedium{
-			display:block;
+			opacity:1; /* remove display:block; */
+			z-index:1;
+			padding-top:0;
+			transform: scale(1);
+		}
+
+		&--is-visible{
+			opacity:1; /* remove display:block; */
+			z-index:1;
+			transform: scale(1);
 		}
 	}
 }

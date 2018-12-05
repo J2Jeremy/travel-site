@@ -2,7 +2,7 @@
 
 /* Document
    ========================================================================== */
- 
+
 /**
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in
@@ -1160,8 +1160,16 @@ look at pkg github page to see variable names and options svg-sprite.
 	padding:10px 0;
 	position:absolute; /*header needs to sit on top of large hero seciton. */
 	width:100%; /* position:absolute chooses minimum width; */
-	z-index: 2;
+	z-index: 2; /* add zindex otherwise hero section takes priority */
+	-webkit-transition:background-color .35s ease-out;
+	transition:background-color .35s ease-out;
 }
+
+/* so we can add bg color and trasnition to mobile nav */
+
+.site-header--is-expanded{
+		background-color: rgba(47,85,114, .55);
+	}
 
 /* install postCSS plugin to convert css vars into rgba, update styles.js */
 
@@ -1174,14 +1182,15 @@ look at pkg github page to see variable names and options svg-sprite.
 
 /* transparent blue bg, use mainBlue, 30% transparent */
 
-.site-header__btn-container{
-		float:right;
-	}
+@media (min-width: 800px) {
 
-/* add zindex otherwise hero section takes priority */
+.site-header__btn-container{
+			float:right
+	}
+  }
 
 .site-header__logo{
-		position:absolute; /* prevents logo from forcing transparent bg to too tall */
+		position:absolute; /* prevents logo from forcing transparent bg too tall */
 		background-color: #2f5572;
 		padding:25px 35px;
 		top: 0; /* keeps padding from site-header from moving logo down 10px */
@@ -1213,6 +1222,7 @@ look at pkg github page to see variable names and options svg-sprite.
 	}
 
 .site-header__menu-icon{
+		z-index: 10; /* added b/c our zindex of -is-visible overrides */
 		width:20px;
 		height:20px;
 		background-color:#ffffff;
@@ -1229,19 +1239,55 @@ look at pkg github page to see variable names and options svg-sprite.
   }
 
 .site-header__menu-content{
-		display:none;
+		/* add 'zoom' effect */
+		-webkit-transform: scale(1.2);
+		        transform: scale(1.2);
+		opacity: 0; /* instead of display:none so we can fade in */
+		-webkit-transition: all .3s ease-out;
+		transition: all .3s ease-out; /* so the --is-visible eases in ALL content */
+		position:relaive; /* anytime we use z-index we need relative so browse recognizes */
+		z-index:-99; /* prevent user from clicking invisible content  */
+		padding-top:90px; /* push mobile nav down  */
+		text-align:center;
 	}
 
 @media (min-width: 800px) {
 
 .site-header__menu-content{
-			display:block
+			opacity:1; /* remove display:block; */
+			z-index:1;
+			padding-top:0;
+			-webkit-transform: scale(1);
+			        transform: scale(1)
 	}
   }
 
+.site-header__menu-content--is-visible{
+			opacity:1; /* remove display:block; */
+			z-index:1;
+			-webkit-transform: scale(1);
+			        transform: scale(1);
+		}
+
+.primary-nav{
+	padding-top:10px;
+}
+
+/* mobile only */
+
+@media (min-width: 800px) {
+
+.primary-nav{
+		padding-top:0
+}
+  }
+
+@media (min-width: 800px) {
+
 .primary-nav--pull-right{
-		float:right;
+			float:right
 	}
+  }
 
 /* break BEM to style ul > a  */
 
@@ -1258,14 +1304,49 @@ look at pkg github page to see variable names and options svg-sprite.
 
 .primary-nav li {
 		list-style: none;
-		float:left;
-		padding-right:20px;
+		display: inline-block; /* allow them to be horiz centered */
+		padding-right:7px;
 	}
+
+@media (min-width: 800px) {
+
+.primary-nav li {
+			padding-right:20px;
+			float:left;
+			display:block
+	}
+  }
+
+/* final item of list */
+
+.primary-nav li:last-child{
+		padding-right:0;
+	}
+
+@media (min-width: 800px) {
+
+.primary-nav li:last-child{
+			padding-right:20px
+	}
+  }
+
+/* no need for padding on small screen */
 
 .primary-nav a {
 		display:block;
 		color: #ffffff;
 		text-decoration: none;
 		font-weight: 300;
-		padding:12px 0;
+		padding:5px 8px; /*updated for smaller screens */
+		font-size: .8rem;
+		background-color: rgba(47,85,114, .5);
 	}
+
+@media (min-width: 800px) {
+
+.primary-nav a {
+			background-color: transparent;
+			font-size:1rem;
+			padding:12px 0
+	}
+  }
