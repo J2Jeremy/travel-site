@@ -50,23 +50,90 @@
 	&__menu-icon{
 		z-index: 10; /* added b/c our zindex of -is-visible overrides */
 		width:20px;
-		height:20px;
-		background-color:#ffffff;
+		height:19px;
+		background-color:transparent;
 		position:absolute;
 		top:10px;
 		right:10px;
-		
+
+		&::before{
+			/* postion 1st bar top left */
+			position:absolute;
+			border:0 solid #fff;
+			border-radius: 4px;
+			top: 0;
+			left:0;
+			content: ""; /* content for pseudo elements */
+			width:20px;
+			height:3px;
+			background-color:#fff;
+			/* set origin so we can rotate only one side of the bar to create our X in --close-x class */
+			/* default is 50% 50%, set top left as origin 0 0 */
+			transform-origin: 0 0;
+			/* add transition to smoothly go from 3 bar to X */
+			transition: transform .3s ease-out;
+		}
+
+		&__bar{
+			position:absolute;
+			border:0 solid #fff;
+			border-radius: 4px;
+			top: 8px;
+			left:0;
+			width:20px;
+			height:3px;
+			background-color:#fff;
+			/* fade width of middle bar out, updated in close-x */
+			transform-origin: 0 50%;
+			transition: all .35s ease-out;
+		}
+
+		&::after{
+			position:absolute;
+			border:0 solid #fff;
+			border-radius: 4px;
+			bottom: 0;
+			left:0;
+			content: "";
+			width:20px;
+			height:3px;
+			background-color:#fff;
+			/* set origin so we can rotate only one side of the bar to create our X in --close-x class */
+			/* default is 50% 50%, set top BOTTOM as origin 0 100% */
+			transform-origin: 0 100%;
+			transition: transform .3s ease-out;
+		}
 		@mixin atMedium{
 			display:none;
 		}
 	}
 
+	/* not nested in the existing menu-icon as a general rule not to nest more than 2 deep for clarity */
+	&__menu-icon--close-x{
+		&::before{
+			/* rotate 45deg clockwise */
+			/* transform origin by default is set to center, fix in base menu-icon ::before class */
+			/* increase bar length to accomodate for diagonal position x=width y=height, 1 is default size */
+			transform:rotate(45deg) scaleX(1.2);
+		}
+		.site-header__menu-icon__bar{
+			opacity: 0;
+			/* create effect where bar's width shrinks to 0 instead of abruptly disappearing, update baseline bar rule */
+			transform:scaleX(0);
+		}
+		&::after{
+			/* opposite from ::before */
+			transform:rotate(-45deg) scaleX(1.2);
+		}		
+	}
+
 	&__menu-content{
 		/* add 'zoom' effect */
+
 		transform: scale(1.2);
 		opacity: 0; /* instead of display:none so we can fade in */
-		transition: all .3s ease-out; /* so the --is-visible eases in ALL content */
-		position:relaive; /* anytime we use z-index we need relative so browse recognizes */
+		transition: all .35s ease-out; /* so the --is-visible eases in ALL content */
+		position:relative; /* anytime we use z-index we need relative so browse recognizes */
 		z-index:-99; /* prevent user from clicking invisible content  */
 		padding-top:90px; /* push mobile nav down  */
 		text-align:center;

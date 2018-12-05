@@ -99,6 +99,7 @@
 		@mixin atMedium{
 			display:flex;
 		} 
+		/* tell contents to FLEX to match tallest elements, target direct descendants */
 		& > div {
 			float:none;
 			display:flex;
@@ -114,10 +115,5 @@
 			display:flex;
 		}
 	}
- 
-
-
-
-
 
 }

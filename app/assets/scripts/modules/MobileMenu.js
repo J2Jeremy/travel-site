@@ -9,7 +9,7 @@ class MobileMenu{
 		})
 		*/
 	//the organized way - selector
-		this.siteHeader = $(".site-header"); //so we can add bg color and trasnition to mobile nav
+		this.siteHeader = $(".site-header"); //so we can add bg color and transition to mobile nav
 		this.menuIcon = $(".site-header__menu-icon");
 		this.menuContent = $(".site-header__menu-content");
 		this.events();
@@ -17,7 +17,7 @@ class MobileMenu{
 
 	//the organized way - all events listed we want to watch for
 	//browser doesnt look for events method name, add to constructor
-	//bind gives our two methods the same 'this' reference.
+	//bind gives our two methods the same 'this' reference, otherwise toggleTheMenu will error.
 	events(){
 		this.menuIcon.click(this.toggleTheMenu.bind(this));
 	}
@@ -30,6 +30,7 @@ class MobileMenu{
 	toggleTheMenu(){
 		this.menuContent.toggleClass("site-header__menu-content--is-visible");
 		this.siteHeader.toggleClass("site-header--is-expanded");//so we can add bg color and trasnition to mobile nav
+		this.menuIcon.toggleClass("site-header__menu-icon--close-x"); //transition 3 bars into 2 and form an X
 	}
 
 }
