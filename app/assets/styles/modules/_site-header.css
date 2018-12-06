@@ -11,7 +11,12 @@
 	/* transparent blue bg, use mainBlue, 30% transparent */
 	/* install postCSS plugin to convert css vars into rgba, update styles.js */
 	@mixin atMedium{
-		background-color: rgba($mainBlue, .3);  
+		position:fixed; /* locks header to top of screen */
+		background-color: rgba($mainBlue, .3);
+
+		 &--dark {
+		 	background-color: rgba(23, 51, 72, .85);
+		 }
 	}
 
 	&__btn-container{
@@ -34,12 +39,18 @@
 			50% 100% = middle of img horiz, bot of img vert
 			50% 0% = middle of img horiz, top of img vert
 		*/
-		transform-origin: 50% 0%; /* top center is origin for scaling */
 		transform:translateX(-50%) scale(.8);
+		transition: transform .3s ease-out;
+		transform-origin: 50% 0%; /* top center is origin for scaling */
+		
 
 		@mixin atMedium {
 			left:auto;
 			transform:translateX(0);
+
+			.site-header--dark &{ /* target logo only when both classes are being used */
+				transform: scale(.6);
+			}
 		}
 	}
 

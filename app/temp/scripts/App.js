@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10325,168 +10325,6 @@ return jQuery;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _MobileMenu = __webpack_require__(2);
-
-var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
-
-var _RevealOnScroll = __webpack_require__(3);
-
-var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mobileMenu = new _MobileMenu2.default();
-//var revealOnScroll = new RevealOnScroll(); //remove to create reusable class
-new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
-new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var MobileMenu = function () {
-	function MobileMenu() {
-		_classCallCheck(this, MobileMenu);
-
-		//the old way 'spaghetti' 3 things happening DOM selector, EVENT handler, FUNCTION definition
-		/*
-  $(".site-header__menu-icon").click(function(){
-  	console.log("icon clicked!");
-  })
-  */
-		//the organized way - selector
-		this.siteHeader = (0, _jquery2.default)(".site-header"); //so we can add bg color and transition to mobile nav
-		this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon");
-		this.menuContent = (0, _jquery2.default)(".site-header__menu-content");
-		this.events();
-	}
-
-	//the organized way - all events listed we want to watch for
-	//browser doesnt look for events method name, add to constructor
-	//bind gives our two methods the same 'this' reference, otherwise toggleTheMenu will error.
-
-
-	_createClass(MobileMenu, [{
-		key: "events",
-		value: function events() {
-			this.menuIcon.click(this.toggleTheMenu.bind(this));
-		}
-
-		//the organized way - function defined.
-		//need to us JS to add new class to nav items that are currently hidden to show them, then style with CSS
-		//'this' keyword issue here. this usually refers to object itself, however this method is invoked in the
-		//events() method,in JS when function is used as event handler, 'this' refers to the DOM that the event
-		//fired from, which is 'menuContent', use bind = assign this reference.
-
-	}, {
-		key: "toggleTheMenu",
-		value: function toggleTheMenu() {
-			this.menuContent.toggleClass("site-header__menu-content--is-visible");
-			this.siteHeader.toggleClass("site-header--is-expanded"); //so we can add bg color and trasnition to mobile nav
-			this.menuIcon.toggleClass("site-header__menu-icon--close-x"); //transition 3 bars into 2 and form an X
-		}
-	}]);
-
-	return MobileMenu;
-}();
-
-exports.default = MobileMenu;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _noframework = __webpack_require__(4);
-
-var _noframework2 = _interopRequireDefault(_noframework);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var RevealOnScroll = function () {
-	function RevealOnScroll(elements, offset) {
-		_classCallCheck(this, RevealOnScroll);
-
-		/*  select DOM elements we want to reveal */
-		this.itemsToReveal = elements; /* collection of elements */
-		this.offsetPercentage = offset;
-		this.hideInitially();
-		this.createWaypoints();
-	}
-
-	_createClass(RevealOnScroll, [{
-		key: 'hideInitially',
-		value: function hideInitially() {
-			this.itemsToReveal.addClass("reveal-item");
-		}
-
-		/* leverage 'waypoints' library */
-
-	}, {
-		key: 'createWaypoints',
-		value: function createWaypoints() {
-			var that = this; //save global this so we can access in waypoint handler function
-			this.itemsToReveal.each(function () {
-				/* run on each features element */
-				var currentItem = this;
-				new Waypoint({
-					element: currentItem, //can't use 'this' b/c waypoint is creating a new object.
-					handler: function handler() {
-						(0, _jquery2.default)(currentItem).addClass("reveal-item--is-visible");
-					},
-					offset: that.offsetPercentage //change waypoint default of 0 (top of view point) to bottom area
-				});
-			});
-		}
-	}]);
-
-	return RevealOnScroll;
-}();
-
-exports.default = RevealOnScroll;
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports) {
 
 /*!
@@ -11247,6 +11085,230 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   Waypoint.Adapter = NoFrameworkAdapter
 }())
 ;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _MobileMenu = __webpack_require__(3);
+
+var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
+
+var _RevealOnScroll = __webpack_require__(4);
+
+var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _StickyHeader = __webpack_require__(5);
+
+var _StickyHeader2 = _interopRequireDefault(_StickyHeader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mobileMenu = new _MobileMenu2.default();
+//var revealOnScroll = new RevealOnScroll(); //remove to create reusable class
+new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
+new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
+var stickyHeader = new _StickyHeader2.default();
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MobileMenu = function () {
+	function MobileMenu() {
+		_classCallCheck(this, MobileMenu);
+
+		//the old way 'spaghetti' 3 things happening DOM selector, EVENT handler, FUNCTION definition
+		/*
+  $(".site-header__menu-icon").click(function(){
+  	console.log("icon clicked!");
+  })
+  */
+		//the organized way - selector
+		this.siteHeader = (0, _jquery2.default)(".site-header"); //so we can add bg color and transition to mobile nav
+		this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon");
+		this.menuContent = (0, _jquery2.default)(".site-header__menu-content");
+		this.events();
+	}
+
+	//the organized way - all events listed we want to watch for
+	//browser doesnt look for events method name, add to constructor
+	//bind gives our two methods the same 'this' reference, otherwise toggleTheMenu will error.
+
+
+	_createClass(MobileMenu, [{
+		key: "events",
+		value: function events() {
+			this.menuIcon.click(this.toggleTheMenu.bind(this));
+		}
+
+		//the organized way - function defined.
+		//need to us JS to add new class to nav items that are currently hidden to show them, then style with CSS
+		//'this' keyword issue here. this usually refers to object itself, however this method is invoked in the
+		//events() method,in JS when function is used as event handler, 'this' refers to the DOM that the event
+		//fired from, which is 'menuContent', use bind = assign this reference.
+
+	}, {
+		key: "toggleTheMenu",
+		value: function toggleTheMenu() {
+			this.menuContent.toggleClass("site-header__menu-content--is-visible");
+			this.siteHeader.toggleClass("site-header--is-expanded"); //so we can add bg color and trasnition to mobile nav
+			this.menuIcon.toggleClass("site-header__menu-icon--close-x"); //transition 3 bars into 2 and form an X
+		}
+	}]);
+
+	return MobileMenu;
+}();
+
+exports.default = MobileMenu;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _noframework = __webpack_require__(1);
+
+var _noframework2 = _interopRequireDefault(_noframework);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var RevealOnScroll = function () {
+	function RevealOnScroll(elements, offset) {
+		_classCallCheck(this, RevealOnScroll);
+
+		/*  select DOM elements we want to reveal */
+		this.itemsToReveal = elements; /* collection of elements */
+		this.offsetPercentage = offset;
+		this.hideInitially();
+		this.createWaypoints();
+	}
+
+	_createClass(RevealOnScroll, [{
+		key: 'hideInitially',
+		value: function hideInitially() {
+			this.itemsToReveal.addClass("reveal-item");
+		}
+
+		/* leverage 'waypoints' library */
+
+	}, {
+		key: 'createWaypoints',
+		value: function createWaypoints() {
+			var that = this; //save global this so we can access in waypoint handler function
+			this.itemsToReveal.each(function () {
+				/* run on each features element */
+				var currentItem = this;
+				new Waypoint({
+					element: currentItem, //can't use 'this' b/c waypoint is creating a new object.
+					handler: function handler() {
+						(0, _jquery2.default)(currentItem).addClass("reveal-item--is-visible");
+					},
+					offset: that.offsetPercentage //change waypoint default of 0 (top of view point) to bottom area
+				});
+			});
+		}
+	}]);
+
+	return RevealOnScroll;
+}();
+
+exports.default = RevealOnScroll;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _noframework = __webpack_require__(1);
+
+var _noframework2 = _interopRequireDefault(_noframework);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var StickyHeader = function () {
+	function StickyHeader() {
+		_classCallCheck(this, StickyHeader);
+
+		this.siteHeader = (0, _jquery2.default)('.site-header');
+		this.headerTriggerElement = (0, _jquery2.default)('.large-hero__title');
+		this.createHeaderWaypoint();
+	}
+
+	_createClass(StickyHeader, [{
+		key: 'createHeaderWaypoint',
+		value: function createHeaderWaypoint() {
+			var that = this;
+			new Waypoint({
+				element: that.headerTriggerElement[0], //element looks for native DOM element, [0] 1st item in jquery object is pointer to DOM
+				handler: function handler(direction) {
+					//add param so darker header returns to original transparent using 'direction'.
+					if (direction == "down") {
+						that.siteHeader.addClass("site-header--dark");
+					} else {
+						that.siteHeader.removeClass("site-header--dark");
+					}
+				}
+			});
+		}
+	}]);
+
+	return StickyHeader;
+}();
+
+exports.default = StickyHeader;
 
 /***/ })
 /******/ ]);
