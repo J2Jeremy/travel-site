@@ -600,6 +600,10 @@ position ancestor.   */
 		max-width: 976px;
 	}
 
+.wrapper--narrow{
+		max-width: 470px;
+	}
+
 .wrapper--no-padding-until-medium{
 		padding-left:0;
 		padding-right:0;
@@ -925,11 +929,14 @@ position ancestor.   */
 		color:#2f5572;
 	}
 
+.section-title--less-margin{
+		margin-bottom: 1.3rem;
+	}
+
 @media (min-width: 530px) {
 
 .section-title{
-		font-size: 3.75rem;
-		margin-bottom:2.1rem
+		font-size: 3.75rem
 }
   }
 
@@ -1473,3 +1480,43 @@ look at pkg github page to see variable names and options svg-sprite.
 		-webkit-transform:scale(1);
 		        transform:scale(1);
 	}
+
+.modal{
+	/* want div to be center screen no matter where element exist in html */
+	position:fixed;
+	z-index: 5;
+	background-color:rgba(255,255,255,.94);
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+}
+
+.modal__description{
+		font-size:1.3rem;
+		text-align: center;
+		font-weight: 300;
+		line-height: 1.65;
+	}
+
+.social-icons{
+	text-align: center;
+}
+
+.social-icons__icon{
+		background-color: #d59541;
+		position: relative; /* b/c children are absolute */
+		display:inline-block; /* inline block lets us set custom height if needed */
+		margin:0 5px;
+		width:72px;
+		height:72px;
+	}
+
+.social-icons__icon .icon { /* descendant class to target our span element */
+			display:block; /* so auto width/heigh sprites can apply to element */
+			/* center icon in parent */
+			position:absolute; /* update parent to relative */
+			margin:0 auto;
+			top:50%; /* come down from top 50% */
+			left:50%; /* come left 50%; */
+		}
