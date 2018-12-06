@@ -1441,6 +1441,8 @@ look at pkg github page to see variable names and options svg-sprite.
 		padding:5px 8px; /*updated for smaller screens */
 		font-size: .8rem;
 		background-color: rgba(47,85,114, .5);
+
+
 	}
 
 @media (min-width: 800px) {
@@ -1449,7 +1451,13 @@ look at pkg github page to see variable names and options svg-sprite.
 			background-color: transparent;
 			font-size:1rem;
 			padding:12px 0
+
+
 	}
+
+			.primary-nav a.is-current-link{
+				color:#fabb69;
+			}
   }
 
 .reveal-item {
