@@ -931,6 +931,7 @@ position ancestor.   */
 
 .section-title--less-margin{
 		margin-bottom: 1.3rem;
+		margin-top:0;
 	}
 
 @media (min-width: 530px) {
@@ -1490,6 +1491,12 @@ look at pkg github page to see variable names and options svg-sprite.
 	bottom:0;
 	left:0;
 	right:0;
+	opacity:1;
+	visibility: hidden;
+	-webkit-transform:scale(1.2);
+	        transform:scale(1.2);
+	-webkit-transition:all .25s ease-out;
+	transition:all .25s ease-out;
 }
 
 .modal__description{
@@ -1497,6 +1504,38 @@ look at pkg github page to see variable names and options svg-sprite.
 		text-align: center;
 		font-weight: 300;
 		line-height: 1.65;
+	}
+
+.modal__close{
+		position:absolute;
+		top:15px;
+		right:15px;
+		font-size:2rem;
+		-webkit-transform:scaleX(1.4);
+		        transform:scaleX(1.4);
+		color:#2f5572;
+		-webkit-transform-origin:100%, 0;
+		        transform-origin:100%, 0; /* set to top right so its scales toward the screen on larger screens */
+		cursor: pointer;
+	}
+
+.modal__close:hover {
+			color: #d59541;
+		}
+
+.modal__inner{
+		position:absolute; /* abs position will try to shrink wrap the size */
+		width:100%;
+		top:50%;
+		-webkit-transform:translateY(-50%);
+		        transform:translateY(-50%);
+	}
+
+.modal--is-visible {
+		opacity: 1;
+		visibility: visible;
+		-webkit-transform:scale(1);
+		        transform:scale(1);
 	}
 
 .social-icons{
@@ -1507,16 +1546,26 @@ look at pkg github page to see variable names and options svg-sprite.
 		background-color: #d59541;
 		position: relative; /* b/c children are absolute */
 		display:inline-block; /* inline block lets us set custom height if needed */
-		margin:0 5px;
-		width:72px;
+		margin:0 5px 5px 5px;
+		width:33%;
 		height:72px;
 	}
 
+@media (min-width: 530px) {
+
+.social-icons__icon{
+			width: 72px; 
+			margin:0 5px
+	}
+  }
+
 .social-icons__icon .icon { /* descendant class to target our span element */
-			display:block; /* so auto width/heigh sprites can apply to element */
+			display:block; /* so auto width/height sprites can apply to element */
 			/* center icon in parent */
 			position:absolute; /* update parent to relative */
 			margin:0 auto;
 			top:50%; /* come down from top 50% */
 			left:50%; /* come left 50%; */
+			-webkit-transform: translate(-50%, -50%);
+			        transform: translate(-50%, -50%);
 		}

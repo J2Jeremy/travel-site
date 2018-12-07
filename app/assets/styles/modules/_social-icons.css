@@ -5,17 +5,24 @@
 		background-color: $mainOrange;
 		position: relative; /* b/c children are absolute */
 		display:inline-block; /* inline block lets us set custom height if needed */
-		margin:0 5px;
-		width:72px;
+		margin:0 5px 5px 5px;
+		width:33%;
 		height:72px;
 
+		@mixin atSmall{
+			width: 72px; 
+			margin:0 5px;
+
+		}
+
 		.icon { /* descendant class to target our span element */
-			display:block; /* so auto width/heigh sprites can apply to element */
+			display:block; /* so auto width/height sprites can apply to element */
 			/* center icon in parent */
 			position:absolute; /* update parent to relative */
 			margin:0 auto;
 			top:50%; /* come down from top 50% */
 			left:50%; /* come left 50%; */
+			transform: translate(-50%, -50%);
 		}
 	}
 }

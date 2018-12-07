@@ -7,11 +7,42 @@
 	bottom:0;
 	left:0;
 	right:0;
+	opacity:1;
+	visibility: hidden;
+	transform:scale(1.2);
+	transition:all .25s ease-out;
 
 	&__description{
 		font-size:1.3rem;
 		text-align: center;
 		font-weight: 300;
 		line-height: 1.65;
+	}
+
+	&__close{
+		position:absolute;
+		top:15px;
+		right:15px;
+		font-size:2rem;
+		transform:scaleX(1.4);
+		color:$mainBlue;
+		transform-origin:100%, 0; /* set to top right so its scales toward the screen on larger screens */
+		cursor: pointer;
+		&:hover {
+			color: $mainOrange;
+		}
+	}
+
+	&__inner{
+		position:absolute; /* abs position will try to shrink wrap the size */
+		width:100%;
+		top:50%;
+		transform:translateY(-50%);
+	}
+
+	&--is-visible {
+		opacity: 1;
+		visibility: visible;
+		transform:scale(1);
 	}
 }

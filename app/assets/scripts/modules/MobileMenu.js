@@ -33,6 +33,7 @@ class MobileMenu{
 		this.menuIcon.toggleClass("site-header__menu-icon--close-x"); //transition 3 bars into 2 and form an X
 	}
 
+
 }
 export default MobileMenu;
 
