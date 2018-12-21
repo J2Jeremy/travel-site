@@ -10,7 +10,7 @@ look at pkg github page to see variable names and options svg-sprite.
 {{#shapes}}
 	{{#first}}
 	.icon {
-		background-image: url('/assets/images/sprites/{{{sprite}}}');
+		background-image: url('../../assets/images/sprites/{{{sprite}}}');
 	}
 	{{/first}}
 	.icon--{{base}}{
